@@ -1,0 +1,14 @@
+[
+	{
+		"name": "Nhialee Yang",
+		"email": "ny2514@gmail.com",
+		"role": "surveyor",
+		"password": "123test"
+	},
+	{
+		"name": "Fabiano Poester",
+		"email": "fpoester@gmail.com",
+		"role": "admin",
+		"password": "123test"
+	}
+]
