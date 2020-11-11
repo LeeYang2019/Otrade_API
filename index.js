@@ -14,8 +14,6 @@ if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'));
 }
 
-app.use();
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () =>
