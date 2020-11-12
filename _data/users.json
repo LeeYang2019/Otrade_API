@@ -1,14 +1,18 @@
 [
 	{
-		"name": "Nhialee Yang",
+		"_id": "5faca4321382694c5ec25e79",
+		"firstName": "Nhialee",
+		"lastName": "Yang",
 		"email": "ny2514@gmail.com",
-		"role": "surveyor",
-		"password": "123test"
+		"password": "123test",
+		"role": "surveyor"
 	},
 	{
-		"name": "Fabiano Poester",
+		"_id": "5faca5036e0d824cba814ada",
+		"firstName": "Fabiano",
+		"lastName": "Poester",
 		"email": "fpoester@gmail.com",
-		"role": "admin",
-		"password": "123test"
+		"password": "123test",
+		"role": "admin"
 	}
 ]

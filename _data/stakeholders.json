@@ -1,0 +1,43 @@
+[
+	{
+		"social": {
+			"youtube": "jtest",
+			"facebook": "jtest@facebook.com"
+		},
+		"_id": "5fad0d365cfe3c521fd2c562",
+		"firstName": "John",
+		"lastName": "Test",
+		"gender": "male",
+		"birthDate": "04-10-1990",
+		"telephone": "920-123-4578",
+		"email": "jtest@gmail.com"
+	},
+	{
+		"social": {
+			"youtube": "jtest",
+			"facebook": "jtest@facebook.com",
+			"twitter": "pb&jtet"
+		},
+		"_id": "5fad0dab378346525b8e8f23",
+		"firstName": "Jasmine",
+		"lastName": "Test",
+		"gender": "female",
+		"birthDate": "04-10-1976",
+		"telephone": "920-123-4578",
+		"email": "jtest@gmail.com"
+	},
+	{
+		"social": {
+			"youtube": "marioeatsmushrooms",
+			"facebook": "mtest@facebook.com",
+			"twitter": "mariojumps"
+		},
+		"_id": "5fad0e097c1471526dbea314",
+		"firstName": "Mario",
+		"lastName": "Test",
+		"gender": "male",
+		"birthDate": "04-10-1954",
+		"telephone": "920-123-1234",
+		"email": "mariotest@gmail.com"
+	}
+]

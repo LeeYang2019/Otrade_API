@@ -1,9 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const { getProjects, getProject } = require('../controller/projects');
+// import project controller methods
+const {
+	getProjects,
+	getProject,
+	addProject,
+	updateProject,
+	deleteProject,
+} = require('../controller/projects');
 
-router.route('/').get(getProjects);
-router.route('/:id').get(getProject);
+//define general route
+router.route('/').get(getProjects).post(addProject);
+
+//define specific route
+router.route('/:id').get(getProject).put(updateProject).delete(deleteProject);
 
 module.exports = router;

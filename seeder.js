@@ -1,10 +1,22 @@
 const fs = require('fs');
+const mongoose = require('mongoose');
+const colors = require('colors');
+const dotenv = require('dotenv');
 
 // load environment variables
+dotenv.config({ path: './config/config.env' });
 
 // load models
+const Project = require('./model/Project');
+const User = require('./model/User');
 
 // connect to db
+mongoose.connect(process.env.MONGO_URI, {
+	useNewUrlParser: true,
+	useCreateIndex: true,
+	useFindAndModify: false,
+	useUnifiedTopology: true,
+});
 
 // read json files
 const users = JSON.parse(
@@ -15,15 +27,32 @@ const activities = JSON.parse(
 	fs.readFileSync(`${__dirname}/_data/activities.json`, 'utf-8')
 );
 
+const projects = JSON.parse(
+	fs.readFileSync(`${__dirname}/_data/projects.json`, 'utf-8')
+);
+
 // import data into db
 const importData = async () => {
-	console.log('inside importData method');
-	console.log(users);
+	try {
+		await Project.create(projects);
+		await User.create(users);
+		console.log('Data imported...'.green.inverse);
+		process.exit();
+	} catch (error) {
+		console.error(error.message);
+	}
 };
 
 // delete date from db
 const deleteData = async () => {
-	console.log('inside deleteData method');
+	try {
+		await Project.deleteMany();
+		await User.deleteMany();
+		console.log('Data deleted...'.red.inverse);
+		process.exit();
+	} catch (error) {
+		console.error(error.message);
+	}
 };
 
 // check for args
