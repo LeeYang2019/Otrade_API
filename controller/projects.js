@@ -8,10 +8,7 @@ const Project = require('../model/Project');
 // @route   GET /api/v1/projects
 // @access  Public
 exports.getProjects = asyncHandler(async (req, res, next) => {
-	const projects = await Project.find();
-	res
-		.status(200)
-		.json({ success: true, count: projects.length, data: projects });
+	res.status(200).json(res.advancedResults);
 });
 
 // @desc    GET a project
@@ -19,7 +16,7 @@ exports.getProjects = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.getProject = asyncHandler(async (req, res, next) => {
 	const project = await Project.findById(req.params.id);
-	res.status(200).json({ sucess: true, data: project });
+	res.status(200).json({ success: true, data: project });
 });
 
 // @desc    POST a project
@@ -49,6 +46,6 @@ exports.updateProject = asyncHandler(async (req, res, next) => {
 // @route   DELETE /api/v1/project/:id
 // @access  Private
 exports.deleteProject = asyncHandler(async (req, res, next) => {
-	const project = await Project.findByIdAndDelete(req.params.id);
+	await Project.findByIdAndDelete(req.params.id);
 	res.status(200).json({ success: true, data: {} });
 });

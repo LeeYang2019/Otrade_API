@@ -10,10 +10,24 @@ const {
 	deleteProject,
 } = require('../controller/projects');
 
-//define general route
-router.route('/').get(getProjects).post(addProject);
+const advancedResults = require('../middleware/advancedResuts');
+const Project = require('../model/Project');
 
-//define specific route
+// import resource routers
+const stakeholderRouter = require('./stakeholders');
+
+router.use('/:projectId/stakeholders', stakeholderRouter);
+
+// define select parameters to include in project results
+const stakeHolderParams = advancedResults(Project, {
+	path: 'stakeholders',
+	select: '_id firstName lastName',
+});
+
+// define general route
+router.route('/').get(stakeHolderParams, getProjects).post(addProject);
+
+// define specific route
 router.route('/:id').get(getProject).put(updateProject).delete(deleteProject);
 
 module.exports = router;

@@ -5,13 +5,23 @@ const asyncHandler = require('../middleware/async');
 const Stakeholder = require('../model/Stakeholder');
 
 // @desc    Get all stakeholders
-// @route   GET /api/v1/stakeholders
+// @route   GET /api/v1/projects/:projectId/stakeholders
 // @access  Private
 exports.getStakeholders = asyncHandler(async (req, res, next) => {
-	const stakeholders = await Stakeholder.find();
-	res
-		.status(200)
-		.json({ success: true, count: stakeholders.length, data: stakeholders });
+	// if a projectId is provided
+	if (req.params.projectId) {
+		const stakeholders = await Stakeholder.find({
+			project: req.params.projectId,
+		});
+		res
+			.status(200)
+			.json({ success: true, count: stakeholders.length, data: stakeholders });
+	} else {
+		// return all stakeholders
+		// not wrapping in else statement causes the following error
+		// Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+		res.status(200).json(res.advancedResults);
+	}
 });
 
 // @desc    Get a stakeholder
@@ -23,10 +33,11 @@ exports.getStakeholder = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Add a stakeholder
-// @route   POST /api/v1/stakeholders/:id
+// @route   POST /api/v1/projects/:projectId/stakeholders
 // @access  Private
 exports.addStakeholder = asyncHandler(async (req, res, next) => {
-	console.log(req.body);
+	req.body.project = req.params.projectId;
+
 	const stakeholder = await Stakeholder.create(req.body);
 	res.status(200).json({ success: true, data: stakeholder });
 });

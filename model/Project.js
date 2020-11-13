@@ -1,16 +1,36 @@
 const mongoose = require('mongoose');
 
 // Define the schema
-const ProjectSchema = new mongoose.Schema({
-	projectName: {
-		type: String,
-		required: [true, 'Please add a project name'],
+const ProjectSchema = new mongoose.Schema(
+	{
+		projectName: {
+			type: String,
+			required: [true, 'Please add a project name'],
+		},
+		projectClient: {
+			type: String,
+			required: [true, 'Please add a project client'],
+		},
+		// coordinates: {},
 	},
-	projectClient: {
-		type: String,
-		required: [true, 'Please add a project client'],
-	},
-	// coordinates: {},
+	{
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
+	}
+);
+
+// delete all stakeholders before deleting the project
+ProjectSchema.pre('remove', async function (next) {
+	console.log(`stakeholders being removed from project ${this._id}`);
+	await this.model('Stakeholder').deleteMany({ project: this._id });
+});
+
+// populate project with stakeholders
+ProjectSchema.virtual('stakeholders', {
+	ref: 'Stakeholder',
+	localField: '_id',
+	foreignField: 'project',
+	justOne: false,
 });
 
 // Exports

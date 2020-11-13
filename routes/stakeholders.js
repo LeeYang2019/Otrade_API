@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 // import stakeholder controller functions
 const {
@@ -10,8 +10,20 @@ const {
 	deleteStakeholder,
 } = require('../controller/stakeholders');
 
+const Stakeholder = require('../model/Stakeholder');
+const advancedResults = require('../middleware/advancedResuts');
+
 // define general route
-router.route('/').get(getStakeholders).post(addStakeholder);
+router
+	.route('/')
+	.get(
+		advancedResults(Stakeholder, {
+			path: 'project',
+			select: 'name, description',
+		}),
+		getStakeholders
+	)
+	.post(addStakeholder);
 
 // define specific route
 router
