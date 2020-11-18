@@ -26,8 +26,9 @@ exports.getOrganization = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/organizations
 // @access  Public
 exports.addOrganization = asyncHandler(async (req, res, next) => {
+	console.log(req.body);
 	const organization = await Organization.create(req.body);
-	res.status.json({ success: true, data: organization });
+	res.status(200).json({ success: true, data: organization });
 });
 
 // @desc    Update an organization

@@ -21,7 +21,7 @@ router.use('/:projectId/stakeholders', stakeholderRouter);
 // define select parameters to include in project results
 const stakeHolderParams = advancedResults(Project, {
 	path: 'stakeholders',
-	select: '_id firstName lastName',
+	select: '_id firstName lastName gender birthdate telephone',
 });
 
 // define general route

@@ -8,7 +8,8 @@ const OrganizationSchema = mongoose.Schema({
 	},
 	political_division: {
 		type: String,
-		required: [true, 'Please add a political division'],
+		require: [true, 'Please enter a political division'],
+		enum: ['Canton', 'Comunidad', 'Federacion', 'Parroquia', 'Provincia'],
 	},
 	address: {
 		type: String,
@@ -30,8 +31,19 @@ const OrganizationSchema = mongoose.Schema({
 			/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
 		],
 	},
-	website: {
-		type: String,
+	social: {
+		youtube: {
+			type: String,
+		},
+		twitter: {
+			type: String,
+		},
+		facebook: {
+			type: String,
+		},
+		linkedin: {
+			type: String,
+		},
 	},
 });
 

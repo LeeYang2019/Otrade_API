@@ -2,16 +2,26 @@
 //bring in asyncHandler
 
 // @desc    GET all activities
-exports.getActivities = async (req, res) => {};
+// @route   GET /api/v1/activities
+// @access  Private
+exports.getActivities = async (req, res, next) => {};
 
 // @desc    GET an activity
-exports.getActivity = async (req, res) => {};
+// @route   GET /api/v1/activities/:id
+// @access  Private
+exports.getActivity = async (req, res, next) => {};
 
 // @desc    POST an activity
-exports.addActivity = async (req, res) => {};
+// @route   POST /api/v1/activities
+// @access  Private
+exports.addActivity = async (req, res, next) => {};
 
 // @desc    PUT an activity
-exports.updateActivity = async (req, res) => {};
+// @route   PUT /api/v1/activities/:id
+// @access  Private
+exports.updateActivity = async (req, res, next) => {};
 
 // @desc    DELETE an activity
-exports.deleteActivity = async (req, res) => {};
+// @route   DELETE /api/v1/activities/:id
+// @access  Private
+exports.deleteActivity = async (req, res, next) => {};

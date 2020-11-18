@@ -8,6 +8,8 @@ const Project = require('../model/Project');
 // @route   GET /api/v1/projects
 // @access  Public
 exports.getProjects = asyncHandler(async (req, res, next) => {
+	// const projects = await Project.find();
+	// res.status(200).json({ success: true, data: projects });
 	res.status(200).json(res.advancedResults);
 });
 

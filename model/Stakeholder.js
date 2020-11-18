@@ -61,8 +61,21 @@ const StakeholderSchema = new mongoose.Schema(
 	}
 );
 
-// populate stakeholders with activities, comments, organization
+// delete all associated coments before deleting the stakeholder
+StakeholderSchema.pre('remove', async function (next) {
+	console.log(`comments being removed from stakeholder ${this._id}`);
+	await this.model('Comment').deleteMany({ stakeholder: this._id });
+	//remove activities associations
+	//remove organizations associations
+});
 
+// populate stakeholders with activities, comments, organization
+StakeholderSchema.virtual('comments', {
+	ref: 'Comment',
+	localField: '_id',
+	foreignField: 'stakeholder',
+	justOne: false,
+});
 
 //export schema as model
 module.exports = mongoose.model('Stakeholder', StakeholderSchema);

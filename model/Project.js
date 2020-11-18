@@ -11,7 +11,9 @@ const ProjectSchema = new mongoose.Schema(
 			type: String,
 			required: [true, 'Please add a project client'],
 		},
-		// coordinates: {},
+		coordinates: {
+			type: String,
+		},
 	},
 	{
 		toJSON: { virtuals: true },
@@ -25,7 +27,7 @@ ProjectSchema.pre('remove', async function (next) {
 	await this.model('Stakeholder').deleteMany({ project: this._id });
 });
 
-// populate project with stakeholders
+// include stakeholders as a field in project
 ProjectSchema.virtual('stakeholders', {
 	ref: 'Stakeholder',
 	localField: '_id',
