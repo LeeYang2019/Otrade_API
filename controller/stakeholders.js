@@ -10,10 +10,12 @@ const Stakeholder = require('../model/Stakeholder');
 exports.getStakeholders = asyncHandler(async (req, res, next) => {
 	// if a projectId is provided
 	if (req.params.projectId) {
-		const stakeholders = await Stakeholder.find({
+		let stakeholders = await Stakeholder.find({
 			project: req.params.projectId,
 		});
-		res.status(200).json(res.advancedResults);
+		res
+			.status(200)
+			.json({ success: true, count: stakeholders.length, data: stakeholders });
 		// .json({ success: true, count: stakeholders.length, data: stakeholders });
 	} else {
 		// return all stakeholders

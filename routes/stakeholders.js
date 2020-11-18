@@ -10,7 +10,7 @@ const {
 	deleteStakeholder,
 } = require('../controller/stakeholders');
 
-const Comment = require('../model/Comment');
+const Stakeholder = require('../model/Stakeholder');
 const advancedResults = require('../middleware/advancedResuts');
 
 //import resource routers
@@ -19,7 +19,7 @@ const commentRouter = require('./comments');
 router.use('/:stakeholderId/comments', commentRouter);
 
 //define commentParams to include in stakeholder results
-const commentParams = advancedResults(Comment, {
+const commentParams = advancedResults(Stakeholder, {
 	path: 'comments',
 	select: '_id comment date',
 });
