@@ -5,7 +5,7 @@ const asyncHandler = require('../middleware/async');
 const User = require('../model/User');
 
 // @desc    Get all users
-// @route   GET /api/v1/users
+// @route   GET /api/v1/admin/users
 // @access  Private
 exports.getUsers = asyncHandler(async (req, res, next) => {
 	const users = await User.find();
@@ -13,7 +13,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Get a user
-// @route   GET /api/v1/users/:id
+// @route   GET /api/v1/admin/users/:id
 // @access  Private
 exports.getUser = asyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.params.id);
@@ -21,7 +21,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Add a user
-// @route   POST /api/v1/users
+// @route   POST /api/v1/admin/users
 // @access  Private
 exports.addUser = asyncHandler(async (req, res, next) => {
 	const user = await User.create(req.body);
